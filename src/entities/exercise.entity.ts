@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Exercise {
@@ -12,5 +12,6 @@ export class Exercise {
   @Column("varchar", { nullable: true })
   description?: string;
 
-  /// yt videos links
+  @Column("simple-array")
+  videos: string[];
 }

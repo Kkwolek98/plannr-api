@@ -4,10 +4,11 @@ import ExerciseController from "../controllers/exercise.controller";
 const exerciseRoutes = Router();
 const controller = new ExerciseController();
 
-exerciseRoutes.get('/', controller.getAllExercises);
-exerciseRoutes.get('/:id', controller.getExerciseById);
-exerciseRoutes.post('/', controller.createExercise);
-exerciseRoutes.delete('/:id', controller.createExercise);
-exerciseRoutes.put('/:id', controller.updateExercise);
+exerciseRoutes.get('/', (req, res) => controller.getAllExercises(req, res));
+exerciseRoutes.get('/:id', (req, res) => controller.getExerciseById(req, res));
+exerciseRoutes.post('/', (req, res) => controller.createExercise(req, res));
+exerciseRoutes.delete('/:id', (req, res) => controller.removeExercise(req, res));
+exerciseRoutes.put('/:id', (req, res) => controller.updateExercise(req, res));
+
 
 export default exerciseRoutes;
