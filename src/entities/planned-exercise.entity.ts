@@ -3,20 +3,19 @@ import { Exercise } from "./exercise.entity";
 
 @Entity()
 export class PlannedExercise {
+	@PrimaryGeneratedColumn("uuid")
+	id: string;
 
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+	@Column({ name: "min_reps" })
+	minReps: number;
 
-  @Column({ name: "min_reps" })
-  minReps: number;
+	@Column({ name: "max_reps" })
+	maxReps: number;
 
-  @Column({ name: "max_reps" })
-  maxReps: number;
+	@Column({ name: "rep_type" })
+	repType: string;
 
-  @Column({ name: "rep_type" })
-  repType: string;
-
-  @ManyToOne(() => Exercise, { eager: true })
-  @JoinColumn({ name: "exercise_id" })
-  exercise: Exercise
+	@ManyToOne(() => Exercise, { eager: true })
+	@JoinColumn({ name: "exercise_id" })
+	exercise: Exercise;
 }
