@@ -7,7 +7,7 @@ export default class SetsService {
 	private readonly setsRepository = dataSource.getRepository(ExerciseSet);
 	private readonly setItemsRepository = dataSource.getRepository(SetItem);
 
-	public async addItemToSet(id: string, setItem: Omit<SetItem, "id" | "exerciseSet">) {
+	public async addItemToSet(id: string, setItem: Partial<SetItem>) {
 		// TODO: Validate input
 		try {
 			const set = await this.setsRepository.findOne({ where: { id } });
