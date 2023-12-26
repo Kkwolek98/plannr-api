@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { NewWorkoutDTO } from "../core/types/workout/new-workout-DTO";
+import ExerciseSet from "../entities/set/exercise-set.entity";
 import Workout from "../entities/workout/workout.entity";
 import WorkoutsService from "../services/workouts.service";
 
@@ -62,6 +63,19 @@ export default class WorkoutsController {
 
 		try {
 			const workout = await this.workoutsService.updateWorkout(id, updatedWorkout);
+
+			res.json(workout);
+		} catch (error) {
+			res.status(500).send(error);
+		}
+	}
+
+	public async addEmptySetToWorkout(req: Request<{ id: string }, {}, Pick<ExerciseSet, "name">>, res: Response) {
+		const { id } = req.params;
+		const { name } = req.body;
+
+		try {
+			const workout = await this.workoutsService.addEmptySetToWorkout(id, name);
 
 			res.json(workout);
 		} catch (error) {

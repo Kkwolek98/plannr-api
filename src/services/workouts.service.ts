@@ -68,4 +68,24 @@ export default class WorkoutsService {
 			throw Error(`${error}`);
 		}
 	}
+
+	public async addEmptySetToWorkout(id: string, setName: string): Promise<Workout | null> {
+		// TODO: Validate input
+
+		try {
+			const workout = await this.getWorkoutById(id);
+
+			if (!workout) {
+				return null;
+			}
+
+			const newSet = await this.setsService.createNewSet(workout, setName);
+			workout.sets.push(newSet);
+
+			return await this.workoutsRepository.save(workout);
+		} catch (error) {
+			console.error(error);
+			throw Error(`${error}`);
+		}
+	}
 }

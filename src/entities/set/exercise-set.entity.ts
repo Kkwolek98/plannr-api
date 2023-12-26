@@ -23,6 +23,8 @@ export default class ExerciseSet {
 	)
 	setItems: SetItem[];
 
-	@Column()
+	@Column({ nullable: true })
 	rest: number;
+
+	//sort
 }

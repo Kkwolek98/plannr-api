@@ -10,6 +10,6 @@ workoutsRoutes.post("/", (req, res) => controller.createWorkout(req, res));
 workoutsRoutes.delete("/:id", (req, res) => controller.removeWorkout(req, res));
 workoutsRoutes.put("/:id", (req, res) => controller.updateWorkout(req, res));
 
-workoutsRoutes.post("/:id/add-set", (req, res) => controller.createWorkout(req, res));
+workoutsRoutes.post("/:id/new-set", (req, res) => controller.addEmptySetToWorkout(req, res));
 
 export default workoutsRoutes;
