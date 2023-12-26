@@ -1,0 +1,71 @@
+import { dataSource } from "../core/data-source";
+import { NewWorkoutDTO } from "../core/types/workout/new-workout-DTO";
+import Workout from "../entities/workout/workout.entity";
+import SetsService from "./sets.service";
+
+export default class WorkoutsService {
+	private readonly setsService = new SetsService();
+	private readonly workoutsRepository = dataSource.getRepository(Workout);
+
+	public async getAllWorkouts(): Promise<Workout[]> {
+		try {
+			return await this.workoutsRepository.find();
+		} catch (error) {
+			console.error(error);
+			throw Error(`${error}`);
+		}
+	}
+
+	public async getWorkoutById(id: string): Promise<Workout | null> {
+		try {
+			return await this.workoutsRepository.findOne({
+				where: { id },
+			});
+		} catch (error) {
+			console.error(error);
+			throw Error(`${error}`);
+		}
+	}
+
+	public async createWorkout(newWorkout: NewWorkoutDTO): Promise<Workout> {
+		//TODO: Validate input
+
+		try {
+			return await this.workoutsRepository.save(newWorkout);
+		} catch (error) {
+			console.error(error);
+			throw Error(`${error}`);
+		}
+	}
+
+	public async removeWorkout(id: string) {
+		try {
+			const workout = await this.getWorkoutById(id);
+
+			if (workout) {
+				await this.workoutsRepository.remove(workout);
+				return true;
+			}
+			return false;
+		} catch (error) {
+			console.error(error);
+			throw Error(`${error}`);
+		}
+	}
+
+	public async updateWorkout(id: string, updatedWorkout: Partial<Workout>): Promise<Workout> {
+		// TODO: validate input
+
+		try {
+			const existingWorkout = await this.getWorkoutById(id);
+
+			return await this.workoutsRepository.save({
+				...existingWorkout,
+				...updatedWorkout,
+			});
+		} catch (error) {
+			console.error(error);
+			throw Error(`${error}`);
+		}
+	}
+}

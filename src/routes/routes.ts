@@ -1,5 +1,6 @@
 const BASE_ROUTES = {
-  exercises: '/exercises'
-} as const
+	exercises: "/exercises",
+	workouts: "/workouts",
+} as const;
 
 export default BASE_ROUTES;
