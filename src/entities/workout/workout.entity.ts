@@ -18,4 +18,7 @@ export default class Workout {
 		{ eager: true },
 	)
 	sets: ExerciseSet[];
+
+	@Column("simple-array")
+	tags: string[];
 }
