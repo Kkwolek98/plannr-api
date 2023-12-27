@@ -12,5 +12,8 @@ export class Exercise {
 	description?: string;
 
 	@Column("simple-array")
+	tags: string[];
+
+	@Column("simple-array")
 	videos: string[];
 }
