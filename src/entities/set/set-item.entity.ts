@@ -31,6 +31,6 @@ export default class SetItem {
 	@Column()
 	sort: number;
 
-	@Column()
+	@Column({ nullable: true })
 	rest: number;
 }
