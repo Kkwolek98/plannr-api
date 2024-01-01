@@ -19,6 +19,6 @@ export default class Workout {
 	)
 	sets: ExerciseSet[];
 
-	@Column("simple-array")
+	@Column("simple-array", { nullable: true })
 	tags: string[];
 }

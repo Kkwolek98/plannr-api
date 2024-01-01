@@ -11,7 +11,7 @@ export class Exercise {
 	@Column("varchar", { nullable: true })
 	description?: string;
 
-	@Column("simple-array")
+	@Column("simple-array", { nullable: true })
 	tags: string[];
 
 	@Column("simple-array")

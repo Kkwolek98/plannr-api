@@ -25,6 +25,9 @@ export default class SetItem {
 	@Column({ name: "rep_exact", nullable: true })
 	repExact: number;
 
+	@Column({ name: "rep_weight", nullable: true })
+	repWeight: number;
+
 	@Column({ name: "rep_type", nullable: true })
 	repType: string; // "kg" | "lb" | "RPE" | "min"
 
