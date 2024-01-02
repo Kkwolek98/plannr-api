@@ -25,7 +25,7 @@ export default class SetItem {
 	@Column({ name: "rep_exact", nullable: true })
 	repExact: number;
 
-	@Column({ name: "rep_weight", nullable: true })
+	@Column({ name: "rep_weight", nullable: true, type: "float" })
 	repWeight: number;
 
 	@Column({ name: "rep_type", nullable: true })
@@ -34,6 +34,6 @@ export default class SetItem {
 	@Column()
 	sort: number;
 
-	@Column({ nullable: true })
+	@Column({ nullable: true, type: "float" })
 	rest: number;
 }
