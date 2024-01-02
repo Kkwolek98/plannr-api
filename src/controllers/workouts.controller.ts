@@ -1,3 +1,4 @@
+import { instanceToPlain } from "class-transformer";
 import { Request, Response } from "express";
 import { NewWorkoutDTO } from "../core/types/workout/new-workout-DTO";
 import ExerciseSet from "../entities/set/exercise-set.entity";
@@ -12,6 +13,7 @@ export default class WorkoutsController {
 			const workouts = await this.workoutsService.getAllWorkouts();
 			res.json(workouts);
 		} catch (error) {
+			console.log(error);
 			res.status(500).send(error);
 		}
 	}
@@ -28,6 +30,7 @@ export default class WorkoutsController {
 				res.status(404).json({ message: "Couldn't find resource" });
 			}
 		} catch (error) {
+			console.log(error);
 			res.status(500).send(error);
 		}
 	}
@@ -38,6 +41,7 @@ export default class WorkoutsController {
 
 			res.json(workout);
 		} catch (error) {
+			console.log(error);
 			res.status(500).send(error);
 		}
 	}
@@ -50,6 +54,7 @@ export default class WorkoutsController {
 
 			res.json({ removed });
 		} catch (error) {
+			console.log(error);
 			res.status(500).send(error);
 		}
 	}
@@ -66,6 +71,7 @@ export default class WorkoutsController {
 
 			res.json(workout);
 		} catch (error) {
+			console.log(error);
 			res.status(500).send(error);
 		}
 	}
@@ -77,8 +83,9 @@ export default class WorkoutsController {
 		try {
 			const workout = await this.workoutsService.addEmptySetToWorkout(id, name);
 
-			res.json(workout);
+			res.json(instanceToPlain(workout));
 		} catch (error) {
+			console.log(error);
 			res.status(500).send(error);
 		}
 	}

@@ -142,7 +142,7 @@ workoutsRoutes.put("/:id", (req, res) => controller.updateWorkout(req, res));
 
 /**
  * @swagger
- * /workouts/{id}/new-set:
+ * /workouts/{id}/sets:
  *   post:
  *     summary: Adds set to workout
  *     description: Creates a new set and adds it to workout.
@@ -172,6 +172,6 @@ workoutsRoutes.put("/:id", (req, res) => controller.updateWorkout(req, res));
  *       500:
  *         description: Internal server error
  */
-workoutsRoutes.post("/:id/new-set", (req, res) => controller.addEmptySetToWorkout(req, res));
+workoutsRoutes.post("/:id/sets", (req, res) => controller.addEmptySetToWorkout(req, res));
 
 export default workoutsRoutes;
