@@ -40,4 +40,16 @@ export default class SetsService {
 			throw Error(`${error}`);
 		}
 	}
+
+	public async updateSet(id: string, updatedSet: Partial<ExerciseSet>): Promise<ExerciseSet> {
+		//TODO: Validate input
+		try {
+			const set = await this.setsRepository.findOne({ where: { id } });
+
+			return await this.setsRepository.save({ ...set, updatedSet });
+		} catch (error) {
+			console.error(error);
+			throw Error(`${error}`);
+		}
+	}
 }
