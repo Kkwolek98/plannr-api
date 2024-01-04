@@ -18,6 +18,9 @@ export default class ExerciseSet {
 	@Column()
 	name: string;
 
+	@Column({ nullable: true })
+	description: string;
+
 	@OneToMany(
 		() => SetItem,
 		(setItem) => setItem.exerciseSet,
@@ -28,5 +31,6 @@ export default class ExerciseSet {
 	@Column({ nullable: true })
 	rest: number;
 
-	//sort
+	@Column()
+	sort: number;
 }

@@ -32,6 +32,7 @@ export default class SetsService {
 			const newSet = new ExerciseSet();
 			newSet.workout = workout;
 			newSet.name = setName;
+			newSet.sort = workout.sets?.length;
 
 			return await this.setsRepository.save(newSet);
 		} catch (error) {
