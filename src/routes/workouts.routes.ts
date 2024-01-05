@@ -174,4 +174,44 @@ workoutsRoutes.put("/:id", (req, res) => controller.updateWorkout(req, res));
  */
 workoutsRoutes.post("/:id/sets", (req, res) => controller.addEmptySetToWorkout(req, res));
 
+/**
+ * @swagger
+ * /workouts/{id}/sets/reorder:
+ *   put:
+ *     summary: Reorder sets in a workout
+ *     description: This endpoint reorders the sets in a workout with the given ID
+ *     tags:
+ *       - Workouts
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The ID of the workout to reorder sets
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               setId:
+ *                 type: string
+ *                 description: The ID of the set to move
+ *               moveTo:
+ *                 type: number
+ *                 description: The new position of the set in the workout
+ *     responses:
+ *       '200':
+ *         description: The sets were successfully reordered
+ *       '400':
+ *         description: Bad request, ID not provided or invalid data
+ *       '404':
+ *         description: Workout not found
+ *       '500':
+ *         description: Internal server error
+ */
+workoutsRoutes.put("/:id/sets/reorder", (req, res) => controller.reorderSet(req, res));
+
 export default workoutsRoutes;

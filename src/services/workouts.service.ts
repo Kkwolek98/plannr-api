@@ -1,5 +1,6 @@
 import { dataSource } from "../core/data-source";
 import { NewWorkoutDTO } from "../core/types/workout/new-workout-DTO";
+import { ReorderSetsDTO } from "../dtos/workouts/reorder-sets-DTO";
 import Workout from "../entities/workout/workout.entity";
 import SetsService from "./sets.service";
 
@@ -81,6 +82,34 @@ export default class WorkoutsService {
 
 			const newSet = await this.setsService.createNewSet(workout, setName);
 			workout.sets.push(newSet);
+
+			return await this.workoutsRepository.save(workout);
+		} catch (error) {
+			console.error(error);
+			throw Error(`${error}`);
+		}
+	}
+
+	public async reorderSet(workoutId: string, reorderDTO: ReorderSetsDTO): Promise<Workout | null> {
+		try {
+			const workout = await this.getWorkoutById(workoutId);
+
+			if (!workout) {
+				return null;
+			}
+
+			const currentSet = workout.sets.find((set) => set.id === reorderDTO.setId);
+			const swapSet = workout.sets.find((set) => set.sort === reorderDTO.moveTo);
+
+			if (!currentSet || !swapSet) {
+				return null;
+			}
+
+			const currentSetSort = currentSet.sort;
+			const swapSetSort = swapSet.sort;
+
+			currentSet.sort = swapSetSort;
+			swapSet.sort = currentSetSort;
 
 			return await this.workoutsRepository.save(workout);
 		} catch (error) {
