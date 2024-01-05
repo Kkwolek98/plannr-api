@@ -52,4 +52,21 @@ export default class SetsService {
 			throw Error(`${error}`);
 		}
 	}
+
+	public async removeSet(id: string): Promise<boolean> {
+		try {
+			const set = await this.setsRepository.findOne({ where: { id } });
+
+			if (!set) {
+				return false;
+			}
+
+			const removedSet = await this.setsRepository.remove(set);
+
+			return true;
+		} catch (error) {
+			console.error(error);
+			throw Error(`${error}`);
+		}
+	}
 }

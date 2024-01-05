@@ -35,4 +35,17 @@ export default class SetController {
 			res.status(500).send({ error });
 		}
 	}
+
+	public async removeSet(req: Request<{ id: string }, {}, {}>, res: Response) {
+		try {
+			const { id } = req.params;
+
+			const removed = await this.setService.removeSet(id);
+
+			res.send({ removed });
+		} catch (error) {
+			console.error(error);
+			res.status(500).send({ error });
+		}
+	}
 }
