@@ -46,7 +46,7 @@ export default class SetsService {
 		try {
 			const set = await this.setsRepository.findOne({ where: { id } });
 
-			return await this.setsRepository.save({ ...set, updatedSet });
+			return await this.setsRepository.save({ ...set, ...updatedSet });
 		} catch (error) {
 			console.error(error);
 			throw Error(`${error}`);
