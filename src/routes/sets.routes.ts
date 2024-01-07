@@ -120,4 +120,31 @@ setsRoutes.put("/:id", (req, res) => controller.updateSet(req, res));
  */
 setsRoutes.delete("/:id", (req, res) => controller.removeSet(req, res));
 
+/**
+ * @swagger
+ * /sets/items/{itemId}:
+ *   delete:
+ *     summary: Delete a set item
+ *     description: This endpoint deletes a set item with the given ID
+ *     tags:
+ *       - Sets
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The ID of the set item to delete
+ *     responses:
+ *       '200':
+ *         description: The set item was successfully deleted
+ *       '400':
+ *         description: Bad request, ID not provided
+ *       '404':
+ *         description: Set item not found
+ *       '500':
+ *         description: Internal server error
+ */
+setsRoutes.delete("/items/:itemId", (req, res) => controller.removeItemFromSet(req, res));
+
 export default setsRoutes;

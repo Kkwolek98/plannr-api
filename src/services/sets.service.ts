@@ -27,6 +27,21 @@ export default class SetsService {
 		}
 	}
 
+	public async removeItemFromSet(itemId: string): Promise<boolean> {
+		try {
+			const item = await this.setItemsRepository.findOne({ where: { id: itemId } });
+
+			if (!item) {
+				return false;
+			}
+
+			return await !!this.setItemsRepository.remove(item);
+		} catch (error) {
+			console.error(error);
+			throw Error(`${error}`);
+		}
+	}
+
 	public async createNewSet(workout: Workout, setName: string): Promise<ExerciseSet> {
 		try {
 			const newSet = new ExerciseSet();
