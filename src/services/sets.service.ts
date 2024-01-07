@@ -16,7 +16,12 @@ export default class SetsService {
 				return null;
 			}
 
-			const newSetItem = await this.setItemsRepository.save(setItem);
+			const savedItem = await this.setItemsRepository.save(setItem);
+			const newSetItem = await this.setItemsRepository.findOne({ where: { id: savedItem.id } });
+
+			if (!newSetItem) {
+				throw new Error("Set item could not be found");
+			}
 
 			set.setItems.push(newSetItem);
 
