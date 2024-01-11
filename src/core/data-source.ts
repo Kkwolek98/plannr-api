@@ -17,3 +17,10 @@ export const dataSource = new DataSource({
 	synchronize: true,
 	logging: false,
 });
+
+export function initializeDataSource() {
+	dataSource
+		.initialize()
+		.then()
+		.catch((error) => console.error(error));
+}

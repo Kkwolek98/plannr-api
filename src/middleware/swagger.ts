@@ -17,6 +17,6 @@ const swaggerOptions: OAS3Options = {
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 
-export function initSwagger(app: Application) {
+export function initalizeSwagger(app: Application) {
 	app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 }
