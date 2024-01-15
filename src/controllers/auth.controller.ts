@@ -35,7 +35,7 @@ export default class AuthController {
 				expiresIn: process.env.JWT_EXPIRES_IN,
 			});
 
-			res.json({ token });
+			res.json({ token, user: instanceToPlain(user) });
 		} catch (error) {
 			res.status(500).send(error);
 		}
