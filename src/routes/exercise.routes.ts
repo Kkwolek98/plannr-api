@@ -71,6 +71,11 @@ exerciseRoutes.get("/:id", (req, res) => controller.getExerciseById(req, res));
  *                 items:
  *                   type: string
  *                 description: Array of video URLs related to the exercise
+ *               tags:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 description: Array of exercise tags
  *     responses:
  *       201:
  *         description: Exercise created successfully
@@ -104,7 +109,9 @@ exerciseRoutes.post("/", (req, res) => controller.createExercise(req, res));
  *       500:
  *         description: Internal server error
  */
-exerciseRoutes.delete("/:id", (req, res) => controller.removeExercise(req, res));
+exerciseRoutes.delete("/:id", (req, res) =>
+  controller.removeExercise(req, res)
+);
 
 /**
  * @swagger
