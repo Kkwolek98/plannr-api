@@ -1,4 +1,4 @@
-import { Exclude } from "class-transformer";
+import { Exclude, instanceToPlain } from "class-transformer";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import Workout from "../workout/workout.entity";
 import SetItem from "./set-item.entity";
@@ -33,4 +33,8 @@ export default class ExerciseSet {
 
 	@Column()
 	sort: number;
+
+	toJSON() {
+		return instanceToPlain(this);
+	}
 }

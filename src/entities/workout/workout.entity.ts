@@ -1,5 +1,6 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import ExerciseSet from "../set/exercise-set.entity";
+import LocalUser from "../user/local-user.entity";
 
 @Entity()
 export default class Workout {
@@ -19,6 +20,13 @@ export default class Workout {
 	)
 	sets: ExerciseSet[];
 
-	@Column("simple-array", { nullable: true })
+	@Column("simple-array")
 	tags: string[];
+
+	@ManyToOne(
+		() => LocalUser,
+		(user) => user.email,
+		{ eager: true },
+	)
+	owner: LocalUser;
 }

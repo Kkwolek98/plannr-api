@@ -1,4 +1,4 @@
-import { Exclude } from "class-transformer";
+import { Exclude, instanceToPlain } from "class-transformer";
 import { Column, Entity } from "typeorm";
 
 @Entity()
@@ -9,6 +9,10 @@ export default class LocalUser {
 	@Exclude()
 	@Column()
 	password: string;
+
+	toJSON() {
+		return instanceToPlain(this);
+	}
 
 	public async isValidPassword(password: string) {
 		return password === this.password; //TODO: hash password

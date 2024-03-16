@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import LocalUser from "./user/local-user.entity";
 
 @Entity()
 export class Exercise {
@@ -11,9 +12,16 @@ export class Exercise {
 	@Column("varchar", { nullable: true })
 	description?: string;
 
-	@Column("simple-array", { nullable: true })
+	@Column("simple-array")
 	tags: string[];
 
 	@Column("simple-array")
 	videos: string[];
+
+	@ManyToOne(
+		() => LocalUser,
+		(user) => user.email,
+		{ eager: true },
+	)
+	owner: LocalUser;
 }
