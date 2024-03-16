@@ -20,7 +20,7 @@ export default class AuthController {
 
       res.json(user);
     } catch (error) {
-      res.status(500).send(error);
+      res.status(500);
     }
   }
 
@@ -43,7 +43,7 @@ export default class AuthController {
 
       res.json({ token, user: instanceToPlain(user) });
     } catch (error) {
-      res.status(500).send(error);
+      res.status(500);
     }
   }
 }
