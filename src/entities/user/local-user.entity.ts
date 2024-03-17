@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import { Exclude, instanceToPlain } from "class-transformer";
 import { Column, Entity } from "typeorm";
 
@@ -14,7 +15,11 @@ export default class LocalUser {
 		return instanceToPlain(this);
 	}
 
-	public async isValidPassword(password: string) {
-		return password === this.password; //TODO: hash password
+	public static async hashPassword(password: string): Promise<string> {
+		return await bcrypt.hash(password, 10);
+	}
+
+	public async isValidPassword(password: string): Promise<boolean> {
+		return await bcrypt.compare(password, this.password);
 	}
 }
