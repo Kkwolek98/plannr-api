@@ -8,7 +8,7 @@ export default class AuthService {
 		try {
 			const user = new LocalUser();
 			user.email = email;
-			user.password = password;
+			user.password = await LocalUser.hashPassword(password);
 			return await this.localUserRepository.save(user);
 		} catch (error) {
 			console.error(error);

@@ -16,7 +16,8 @@ export default class LocalUser {
 	}
 
 	public static async hashPassword(password: string): Promise<string> {
-		return await bcrypt.hash(password, 10);
+		const hashedPassword = await bcrypt.hash(password, 10);
+		return hashedPassword;
 	}
 
 	public async isValidPassword(password: string): Promise<boolean> {
