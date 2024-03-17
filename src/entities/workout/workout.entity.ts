@@ -25,7 +25,7 @@ export default class Workout {
 
 	@ManyToOne(
 		() => LocalUser,
-		(user) => user.email,
+		(user) => user.id,
 		{ eager: true },
 	)
 	owner: LocalUser;

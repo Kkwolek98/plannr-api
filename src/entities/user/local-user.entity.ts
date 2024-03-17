@@ -1,10 +1,13 @@
 import bcrypt from "bcrypt";
 import { Exclude, instanceToPlain } from "class-transformer";
-import { Column, Entity } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export default class LocalUser {
-	@Column({ primary: true })
+	@PrimaryGeneratedColumn("uuid")
+	id: string;
+
+	@Column()
 	email: string;
 
 	@Exclude()

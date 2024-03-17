@@ -6,24 +6,24 @@ import AuthService from "../../services/auth.service";
 dotenv.config();
 
 const jwtOptions: StrategyOptions = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: process.env.JWT_SECRET,
+	jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+	secretOrKey: process.env.JWT_SECRET,
 };
 
 export function initializeJwtAuth() {
-  const authService = new AuthService();
+	const authService = new AuthService();
 
-  passport.use(
-    new Strategy(jwtOptions, async (payload, done) => {
-      try {
-        const user = await authService.getLocalUser(payload.email);
-        if (!user) {
-          return done(null, false);
-        }
-        return done(null, user);
-      } catch (error) {
-        return done(error, false);
-      }
-    })
-  );
+	passport.use(
+		new Strategy(jwtOptions, async (payload, done) => {
+			try {
+				const user = await authService.getLocalUser(payload.id);
+				if (!user) {
+					return done(null, false);
+				}
+				return done(null, user);
+			} catch (error) {
+				return done(error, false);
+			}
+		}),
+	);
 }

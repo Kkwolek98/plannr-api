@@ -33,9 +33,9 @@ export default class AuthService {
 		}
 	}
 
-	public async getLocalUser(email: string): Promise<LocalUser | null> {
+	public async getLocalUser(id: string): Promise<LocalUser | null> {
 		try {
-			return await this.localUserRepository.findOne({ where: { email } });
+			return await this.localUserRepository.findOne({ where: { id } });
 		} catch (error) {
 			console.error(error);
 			throw error;

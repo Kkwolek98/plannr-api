@@ -20,7 +20,7 @@ export class Exercise {
 
 	@ManyToOne(
 		() => LocalUser,
-		(user) => user.email,
+		(user) => user.id,
 		{ eager: true },
 	)
 	owner: LocalUser;
