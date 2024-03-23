@@ -1,0 +1,31 @@
+name: Node.js CD
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy using ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+          debug: true
+          script: |
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
+            eval "$(ssh-agent -s)"
+            ssh-add ${{ secrets.KEY_PATH }}
+            cd ~/api
+            rm -rf ./*
+            git clone ${{ secrets.GIT_REPO_MASTER }}
+            cd plannr-api
+            npm install
+            kill -9 $(lsof -t -i:8000)
+            npm start

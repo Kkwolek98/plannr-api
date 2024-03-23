@@ -66,6 +66,10 @@ workoutsRoutes.get("/:id", (req, res) => controller.getWorkoutById(req, res));
  *               description:
  *                 type: string
  *                 optional: true
+ *               tags:
+ *                 type: array
+ *                 items:
+ *                   type: string
  *     responses:
  *       201:
  *         description: Workout created successfully

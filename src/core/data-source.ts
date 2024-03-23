@@ -8,9 +8,9 @@ import Workout from "../entities/workout/workout.entity";
 export const dataSource = new DataSource({
 	type: "postgres",
 	host: "localhost",
-	port: 1337,
+	port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 1337,
 	username: "postgres",
-	password: "",
+	password: process.env.DB_PASSWORD || "",
 	database: "plannr",
 	entities: [Exercise, ExerciseSet, SetItem, Workout, LocalUser],
 	migrations: ["../migrations/**.ts"],
