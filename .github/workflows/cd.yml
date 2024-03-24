@@ -29,5 +29,5 @@ jobs:
             cd plannr-api
             echo "${{ vars.DOT_ENV }}" > .env
             npm install
-            kill -9 $(lsof -t -i:8000)
-            npm start
+            kill -9 $(lsof -t -i:3000)
+            pm2 start npm --name "plannr-backend" -- run start
