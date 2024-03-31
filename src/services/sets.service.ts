@@ -53,6 +53,7 @@ export default class SetsService {
 			newSet.workout = workout;
 			newSet.name = setName;
 			newSet.sort = workout.sets?.length;
+			newSet.setItems = [];
 
 			return await this.setsRepository.save(newSet);
 		} catch (error) {
