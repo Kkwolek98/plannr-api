@@ -10,6 +10,7 @@ export default class SetItem {
 	@ManyToOne(
 		() => ExerciseSet,
 		(exerciseSet) => exerciseSet.setItems,
+		{ onDelete: "CASCADE" },
 	)
 	exerciseSet: ExerciseSet;
 
