@@ -19,6 +19,23 @@ export default class SetController {
 		}
 	}
 
+	public async updateSetItem(
+		req: Request<{ itemId: string }, {}, Partial<SetItem>>,
+		res: Response<SetItem | { error: unknown }>,
+	) {
+		try {
+			const { itemId } = req.params;
+			const updatedItem = req.body;
+
+			const item = await this.setService.updateSetItem(itemId, updatedItem);
+
+			res.send(item);
+		} catch (error) {
+			console.error(error);
+			res.status(500).send({ error });
+		}
+	}
+
 	public async removeItemFromSet(req: Request<{ itemId: string }, {}, {}>, res: Response) {
 		try {
 			const { itemId } = req.params;

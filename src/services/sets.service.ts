@@ -32,6 +32,20 @@ export default class SetsService {
 		}
 	}
 
+	public async updateSetItem(itemId: string, updatedItem: Partial<SetItem>): Promise<SetItem> {
+		try {
+			const item = await this.setItemsRepository.findOne({ where: { id: itemId } });
+
+			if (!item) {
+				throw new Error("Item not found");
+			}
+
+			return await this.setItemsRepository.save({ ...item, ...updatedItem });
+		} catch (error) {
+			throw Error(`${error}`);
+		}
+	}
+
 	public async removeItemFromSet(itemId: string): Promise<boolean> {
 		try {
 			const item = await this.setItemsRepository.findOne({ where: { id: itemId } });
