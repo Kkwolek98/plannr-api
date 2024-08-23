@@ -1,15 +1,20 @@
 import { dataSource } from "../core/data-source";
 import LocalUser from "../entities/user/local-user.entity";
+import UserService from "./user.service";
 
 export default class AuthService {
 	private readonly localUserRepository = dataSource.getRepository(LocalUser);
+	private readonly userService = new UserService();
 
 	public async registerLocalUser(email: string, password: string): Promise<LocalUser> {
 		try {
 			const user = new LocalUser();
 			user.email = email;
 			user.password = await LocalUser.hashPassword(password);
-			return await this.localUserRepository.save(user);
+			// TODO: transaction perhaps
+			const savedUser = await this.localUserRepository.save(user);
+			savedUser.details = await this.userService.createUserDetails(savedUser);
+			return savedUser;
 		} catch (error) {
 			console.error(error);
 			throw error;

@@ -1,4 +1,5 @@
 import { dataSource } from "../core/data-source";
+import LocalUser from "../entities/user/local-user.entity";
 import UserDetails from "../entities/user/user-details.entity";
 
 export default class UserService {
@@ -18,6 +19,17 @@ export default class UserService {
 			const currentDetails = await this.userDetailsRepository.findOne({ where: { user: { id: userId } } });
 			const newDetails = { ...currentDetails, ...updatedDetails };
 			return await this.userDetailsRepository.save(newDetails);
+		} catch (error) {
+			console.error(error);
+			throw error;
+		}
+	}
+
+	public async createUserDetails(user: LocalUser): Promise<UserDetails> {
+		try {
+			const details = new UserDetails();
+			details.user = user;
+			return await this.userDetailsRepository.save(details);
 		} catch (error) {
 			console.error(error);
 			throw error;
