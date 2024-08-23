@@ -4,6 +4,7 @@ import { Exercise } from "../entities/exercise.entity";
 import ExerciseSet from "../entities/set/exercise-set.entity";
 import SetItem from "../entities/set/set-item.entity";
 import LocalUser from "../entities/user/local-user.entity";
+import UserDetails from "../entities/user/user-details.entity";
 import Workout from "../entities/workout/workout.entity";
 
 dotenv.config();
@@ -15,7 +16,7 @@ export const dataSource = new DataSource({
 	username: "postgres",
 	password: process.env.DB_PASSWORD || "",
 	database: "plannr",
-	entities: [Exercise, ExerciseSet, SetItem, Workout, LocalUser],
+	entities: [Exercise, ExerciseSet, SetItem, Workout, LocalUser, UserDetails],
 	migrations: ["../migrations/**.ts"],
 	migrationsTableName: "migrations",
 	synchronize: true,

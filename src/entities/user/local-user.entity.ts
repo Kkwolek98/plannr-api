@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import { Exclude, instanceToPlain } from "class-transformer";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import UserDetails from "./user-details.entity";
 
 @Entity()
 export default class LocalUser {
@@ -9,6 +10,13 @@ export default class LocalUser {
 
 	@Column()
 	email: string;
+
+	@OneToOne(
+		() => UserDetails,
+		(details) => details.user,
+	)
+	@JoinColumn()
+	details: UserDetails;
 
 	@Exclude()
 	@Column()
