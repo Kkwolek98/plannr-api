@@ -1,7 +1,7 @@
 import { dataSource } from "../core/data-source";
 import ExerciseSet from "../entities/set/exercise-set.entity";
 import SetItem from "../entities/set/set-item.entity";
-import Workout from "../entities/workout/workout.entity";
+import WorkoutTemplate from "../entities/workout/workout.entity";
 
 export default class SetsService {
 	private readonly setsRepository = dataSource.getRepository(ExerciseSet);
@@ -61,12 +61,12 @@ export default class SetsService {
 		}
 	}
 
-	public async createNewSet(workout: Workout, setName: string): Promise<ExerciseSet> {
+	public async createNewSet(workoutTemplate: WorkoutTemplate, setName: string): Promise<ExerciseSet> {
 		try {
 			const newSet = new ExerciseSet();
-			newSet.workout = workout;
+			newSet.workoutTemplate = workoutTemplate;
 			newSet.name = setName;
-			newSet.sort = workout.sets?.length;
+			newSet.sort = workoutTemplate.sets?.length;
 			newSet.setItems = [];
 
 			return await this.setsRepository.save(newSet);

@@ -3,7 +3,7 @@ import ExerciseSet from "../set/exercise-set.entity";
 import LocalUser from "../user/local-user.entity";
 
 @Entity()
-export default class Workout {
+export default class WorkoutTemplate {
 	@PrimaryGeneratedColumn("uuid")
 	id: string;
 
@@ -15,7 +15,7 @@ export default class Workout {
 
 	@OneToMany(
 		() => ExerciseSet,
-		(exerciseSet) => exerciseSet.workout,
+		(exerciseSet) => exerciseSet.workoutTemplate,
 		{ eager: true },
 	)
 	sets: ExerciseSet[];

@@ -1,7 +1,7 @@
 import { Router } from "express";
-import WorkoutsController from "../controllers/workouts.controller";
+import WorkoutsController from "../controllers/workout-templates.controller";
 
-const workoutsRoutes = Router();
+const workoutTemplatesRoutes = Router();
 const controller = new WorkoutsController();
 
 /**
@@ -19,7 +19,7 @@ const controller = new WorkoutsController();
  *         description: Internal server error
  */
 
-workoutsRoutes.get("/", (req, res) => controller.getAllWorkouts(req, res));
+workoutTemplatesRoutes.get("/", (req, res) => controller.getAllWorkoutTemplates(req, res));
 
 /**
  * @swagger
@@ -44,7 +44,7 @@ workoutsRoutes.get("/", (req, res) => controller.getAllWorkouts(req, res));
  *       500:
  *         description: Internal server error
  */
-workoutsRoutes.get("/:id", (req, res) => controller.getWorkoutById(req, res));
+workoutTemplatesRoutes.get("/:id", (req, res) => controller.getWorkoutTemplatesById(req, res));
 
 /**
  * @swagger
@@ -78,7 +78,7 @@ workoutsRoutes.get("/:id", (req, res) => controller.getWorkoutById(req, res));
  *       500:
  *         description: Internal server error
  */
-workoutsRoutes.post("/", (req, res) => controller.createWorkout(req, res));
+workoutTemplatesRoutes.post("/", (req, res) => controller.createWorkoutTemplate(req, res));
 
 /**
  * @swagger
@@ -103,7 +103,7 @@ workoutsRoutes.post("/", (req, res) => controller.createWorkout(req, res));
  *       500:
  *         description: Internal server error
  */
-workoutsRoutes.delete("/:id", (req, res) => controller.removeWorkout(req, res));
+workoutTemplatesRoutes.delete("/:id", (req, res) => controller.removeWorkoutTemplate(req, res));
 
 /**
  * @swagger
@@ -142,7 +142,7 @@ workoutsRoutes.delete("/:id", (req, res) => controller.removeWorkout(req, res));
  *       500:
  *         description: Internal server error
  */
-workoutsRoutes.put("/:id", (req, res) => controller.updateWorkout(req, res));
+workoutTemplatesRoutes.put("/:id", (req, res) => controller.updateWorkoutTemplate(req, res));
 
 /**
  * @swagger
@@ -176,7 +176,7 @@ workoutsRoutes.put("/:id", (req, res) => controller.updateWorkout(req, res));
  *       500:
  *         description: Internal server error
  */
-workoutsRoutes.post("/:id/sets", (req, res) => controller.addEmptySetToWorkout(req, res));
+workoutTemplatesRoutes.post("/:id/sets", (req, res) => controller.addEmptySetToWorkoutTemplate(req, res));
 
 /**
  * @swagger
@@ -216,6 +216,6 @@ workoutsRoutes.post("/:id/sets", (req, res) => controller.addEmptySetToWorkout(r
  *       '500':
  *         description: Internal server error
  */
-workoutsRoutes.put("/:id/sets/reorder", (req, res) => controller.reorderSet(req, res));
+workoutTemplatesRoutes.put("/:id/sets/reorder", (req, res) => controller.reorderSet(req, res));
 
-export default workoutsRoutes;
+export default workoutTemplatesRoutes;

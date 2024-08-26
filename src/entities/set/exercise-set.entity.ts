@@ -1,6 +1,6 @@
 import { Exclude, instanceToPlain } from "class-transformer";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import Workout from "../workout/workout.entity";
+import WorkoutTemplate from "../workout/workout.entity";
 import SetItem from "./set-item.entity";
 
 @Entity()
@@ -10,10 +10,10 @@ export default class ExerciseSet {
 
 	@Exclude()
 	@ManyToOne(
-		() => Workout,
-		(workout) => workout.sets,
+		() => WorkoutTemplate,
+		(workoutTemplate) => workoutTemplate.sets,
 	)
-	workout: Workout;
+	workoutTemplate: WorkoutTemplate;
 
 	@Column()
 	name: string;
