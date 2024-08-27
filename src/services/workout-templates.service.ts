@@ -1,7 +1,7 @@
 import { dataSource } from "../core/data-source";
 import { NewWorkoutDTO } from "../core/types/workout/new-workout-DTO";
 import { ReorderSetsDTO } from "../dtos/workouts/reorder-sets-DTO";
-import WorkoutTemplate from "../entities/workout/workout.entity";
+import WorkoutTemplate from "../entities/workout/workout-template.entity";
 import SetsService from "./sets.service";
 
 export default class WorkoutTemplatesService {

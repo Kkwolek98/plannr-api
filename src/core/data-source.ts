@@ -5,7 +5,7 @@ import ExerciseSet from "../entities/set/exercise-set.entity";
 import SetItem from "../entities/set/set-item.entity";
 import LocalUser from "../entities/user/local-user.entity";
 import UserDetails from "../entities/user/user-details.entity";
-import WorkoutTemplate from "../entities/workout/workout.entity";
+import WorkoutTemplate from "../entities/workout/workout-template.entity";
 
 dotenv.config();
 

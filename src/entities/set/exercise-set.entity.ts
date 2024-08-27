@@ -1,6 +1,6 @@
 import { Exclude, instanceToPlain } from "class-transformer";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import WorkoutTemplate from "../workout/workout.entity";
+import WorkoutTemplate from "../workout/workout-template.entity";
 import SetItem from "./set-item.entity";
 
 @Entity()

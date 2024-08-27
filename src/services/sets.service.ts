@@ -1,7 +1,7 @@
 import { dataSource } from "../core/data-source";
 import ExerciseSet from "../entities/set/exercise-set.entity";
 import SetItem from "../entities/set/set-item.entity";
-import WorkoutTemplate from "../entities/workout/workout.entity";
+import WorkoutTemplate from "../entities/workout/workout-template.entity";
 
 export default class SetsService {
 	private readonly setsRepository = dataSource.getRepository(ExerciseSet);

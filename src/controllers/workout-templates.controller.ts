@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { NewWorkoutDTO } from "../core/types/workout/new-workout-DTO";
 import { ReorderSetsDTO } from "../dtos/workouts/reorder-sets-DTO";
 import ExerciseSet from "../entities/set/exercise-set.entity";
-import WorkoutTemplate from "../entities/workout/workout.entity";
+import WorkoutTemplate from "../entities/workout/workout-template.entity";
 import WorkoutTemplatesService from "../services/workout-templates.service";
 import { enrichWithOwner } from "../utils/owner-enrich";
 
