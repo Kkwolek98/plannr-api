@@ -14,7 +14,13 @@ const controller = new ExerciseController();
  *       - Exercises
  *     responses:
  *       200:
- *         description: Successful operation
+ *         description: List of exercises
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Exercise'
  *       500:
  *         description: Internal server error
  */
@@ -38,6 +44,10 @@ exerciseRoutes.get("/", (req, res) => controller.getAllExercises(req, res));
  *     responses:
  *       200:
  *         description: Successful operation
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Exercise'
  *       404:
  *         description: Exercise not found
  *       500:
@@ -76,8 +86,6 @@ exerciseRoutes.get("/:id", (req, res) => controller.getExerciseById(req, res));
  *                 items:
  *                   type: string
  *                 description: Array of exercise tags
- *               owner:
- *                 type: LocalUser
  *     responses:
  *       201:
  *         description: Exercise created successfully
