@@ -12,7 +12,7 @@ const swaggerDefinition: OAS3Definition = {
 
 const swaggerOptions: OAS3Options = {
 	swaggerDefinition,
-	apis: ["./src/routes/*.ts"],
+	apis: ["./src/routes/*.ts", "./src/dtos/**/*.ts", "./src/entities/**/*.ts"],
 };
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
