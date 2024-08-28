@@ -55,7 +55,7 @@ export default class WorkoutsController {
 		try {
 			const removed = await this.workoutTemplatesService.removeWorkoutTemplate(id);
 
-			res.json({ removed });
+			res.status(204).json({ removed });
 		} catch (error) {
 			console.log(error);
 			res.status(500);

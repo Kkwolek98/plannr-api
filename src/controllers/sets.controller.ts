@@ -42,7 +42,7 @@ export default class SetController {
 
 			const removed = await this.setService.removeItemFromSet(itemId);
 
-			res.send({ removed });
+			res.status(204).send({ removed });
 		} catch (error) {
 			console.error(error);
 			res.status(500).send({ error });
@@ -72,7 +72,7 @@ export default class SetController {
 
 			const removed = await this.setService.removeSet(id);
 
-			res.send({ removed });
+			res.status(204).send({ removed });
 		} catch (error) {
 			console.error(error);
 			res.status(500).send({ error });
