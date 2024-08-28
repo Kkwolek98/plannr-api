@@ -35,3 +35,25 @@ export default class LocalUser {
 		return await bcrypt.compare(password, this.password);
 	}
 }
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     LocalUser:
+ *       type: object
+ *       required:
+ *         - id
+ *         - email
+ *         - details
+ *       properties:
+ *         id:
+ *           type: string
+ *           format: uuid
+ *         email:
+ *           type: string
+ *         details:
+ *           $ref: '#/components/schemas/UserDetails'
+ *         password:
+ *           type: string
+ */

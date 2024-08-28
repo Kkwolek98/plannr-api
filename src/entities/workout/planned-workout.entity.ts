@@ -19,3 +19,29 @@ export default class PlannedWorkout {
 	@Column({ type: "date" })
 	date: Date;
 }
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     PlannedWorkout:
+ *       type: object
+ *       required:
+ *         - id
+ *         - template
+ *         - differences
+ *         - date
+ *       properties:
+ *         id:
+ *           type: string
+ *           format: uuid
+ *         template:
+ *           $ref: '#/components/schemas/WorkoutTemplate'
+ *         differences:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/ExerciseDifference'
+ *         date:
+ *           type: string
+ *           format: date
+ */

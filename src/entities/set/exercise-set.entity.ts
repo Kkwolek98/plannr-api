@@ -38,3 +38,34 @@ export default class ExerciseSet {
 		return instanceToPlain(this);
 	}
 }
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     ExerciseSet:
+ *       type: object
+ *       required:
+ *         - id
+ *         - name
+ *         - setItems
+ *         - sort
+ *       properties:
+ *         id:
+ *           type: string
+ *           format: uuid
+ *         name:
+ *           type: string
+ *         description:
+ *           type: string
+ *           nullable: true
+ *         setItems:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/SetItem'
+ *         rest:
+ *           type: integer
+ *           nullable: true
+ *         sort:
+ *           type: integer
+ */

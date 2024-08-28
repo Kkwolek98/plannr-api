@@ -38,3 +38,50 @@ export default class SetItem {
 	@Column({ nullable: true, type: "float" })
 	rest: number;
 }
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     SetItem:
+ *       type: object
+ *       required:
+ *         - id
+ *         - exerciseSet
+ *         - details
+ *         - sort
+ *       properties:
+ *         id:
+ *           type: string
+ *           format: uuid
+ *         exerciseSet:
+ *           $ref: '#/components/schemas/ExerciseSet'
+ *         details:
+ *           $ref: '#/components/schemas/Exercise'
+ *         repMin:
+ *           type: integer
+ *           nullable: true
+ *         repMax:
+ *           type: integer
+ *           nullable: true
+ *         repExact:
+ *           type: integer
+ *           nullable: true
+ *         repWeight:
+ *           type: number
+ *           format: float
+ *           nullable: true
+ *         repType:
+ *           type: string
+ *           nullable: true
+ *           enum:
+ *             - kg
+ *             - lb
+ *             - RPE
+ *             - min
+ *         sort:
+ *           type: integer
+ *         rest:
+ *           type: number
+ *           format: float
+ *           nullable: true
+ */

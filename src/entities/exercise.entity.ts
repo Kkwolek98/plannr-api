@@ -25,3 +25,36 @@ export class Exercise {
 	)
 	owner: LocalUser;
 }
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Exercise:
+ *       type: object
+ *       required:
+ *         - id
+ *         - name
+ *         - tags
+ *         - videos
+ *         - owner
+ *       properties:
+ *         id:
+ *           type: string
+ *           format: uuid
+ *         name:
+ *           type: string
+ *         description:
+ *           type: string
+ *           nullable: true
+ *         tags:
+ *           type: array
+ *           items:
+ *             type: string
+ *         videos:
+ *           type: array
+ *           items:
+ *             type: string
+ *         owner:
+ *           $ref: '#/components/schemas/LocalUser'
+ */

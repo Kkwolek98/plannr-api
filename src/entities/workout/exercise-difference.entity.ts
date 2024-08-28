@@ -19,3 +19,25 @@ export default class ExerciseDifference {
 	)
 	plannedWorkout: PlannedWorkout;
 }
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     ExerciseDifference:
+ *       type: object
+ *       required:
+ *         - id
+ *         - plannedWorkout
+ *       properties:
+ *         id:
+ *           type: string
+ *           format: uuid
+ *         comment:
+ *           type: string
+ *           nullable: true
+ *         newValue:
+ *           $ref: '#/components/schemas/SetItem'
+ *         plannedWorkout:
+ *           $ref: '#/components/schemas/PlannedWorkout'
+ */

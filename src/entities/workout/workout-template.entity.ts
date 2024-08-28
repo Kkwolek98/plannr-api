@@ -30,3 +30,36 @@ export default class WorkoutTemplate {
 	)
 	owner: LocalUser;
 }
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     WorkoutTemplate:
+ *       type: object
+ *       required:
+ *         - id
+ *         - name
+ *         - sets
+ *         - tags
+ *         - owner
+ *       properties:
+ *         id:
+ *           type: string
+ *           format: uuid
+ *         name:
+ *           type: string
+ *         description:
+ *           type: string
+ *           nullable: true
+ *         sets:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/ExerciseSet'
+ *         tags:
+ *           type: array
+ *           items:
+ *             type: string
+ *         owner:
+ *           $ref: '#/components/schemas/LocalUser'
+ */
