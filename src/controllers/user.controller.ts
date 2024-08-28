@@ -22,7 +22,7 @@ export default class UserController {
 				res.status(404).json({ message: "Couldn't find user details" });
 			}
 		} catch {
-			res.send(500);
+			res.status(500);
 		}
 	}
 
