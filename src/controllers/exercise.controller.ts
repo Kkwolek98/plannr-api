@@ -47,7 +47,7 @@ export default class ExerciseController {
 		try {
 			const removed = await this.exerciseService.removeExercise(id);
 
-			res.json({ removed });
+			res.status(204).json({ removed });
 		} catch (error) {
 			res.status(500);
 		}

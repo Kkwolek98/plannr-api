@@ -10,6 +10,7 @@ export default class PlanningController {
 		const newWorkoutPlanningDTO = req.body;
 		try {
 			const plannedWorkouts = await this.planningService.planWorkout(newWorkoutPlanningDTO);
+
 			res.json(plannedWorkouts);
 		} catch {
 			res.status(500);

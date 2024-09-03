@@ -1,9 +1,8 @@
-import ExerciseDifference from "../../entities/workout/exercise-difference.entity";
-import WorkoutTemplate from "../../entities/workout/workout-template.entity";
+import ExerciseSet from "../../entities/set/exercise-set.entity";
 
 export type NewWorkoutPlanningDTO = {
-	template: WorkoutTemplate;
-	differences: ExerciseDifference[];
+	template: string;
+	differences: ExerciseSet[];
 	dates: Date[];
 };
 
@@ -19,12 +18,12 @@ export type NewWorkoutPlanningDTO = {
  *         - dates
  *       properties:
  *         template:
- *           $ref: '#/components/schemas/WorkoutTemplate'
- *           description: The workout template to be used.
+ *           type: string
+ *           format: uuid
  *         differences:
  *           type: array
  *           items:
- *             $ref: '#/components/schemas/ExerciseDifference'
+ *             $ref: '#/components/schemas/ExerciseSet'
  *           description: List of differences between the template and the new workout.
  *         dates:
  *           type: array

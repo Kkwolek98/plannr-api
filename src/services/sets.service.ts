@@ -65,6 +65,7 @@ export default class SetsService {
 		try {
 			const newSet = new ExerciseSet();
 			newSet.workoutTemplate = workoutTemplate;
+			newSet.plannedWorkout = null;
 			newSet.name = setName;
 			newSet.sort = workoutTemplate.sets?.length;
 			newSet.setItems = [];

@@ -1,5 +1,6 @@
 import { Exclude, instanceToPlain } from "class-transformer";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import PlannedWorkout from "../workout/planned-workout.entity";
 import WorkoutTemplate from "../workout/workout-template.entity";
 import SetItem from "./set-item.entity";
 
@@ -12,8 +13,17 @@ export default class ExerciseSet {
 	@ManyToOne(
 		() => WorkoutTemplate,
 		(workoutTemplate) => workoutTemplate.sets,
+		{ nullable: true },
 	)
-	workoutTemplate: WorkoutTemplate;
+	workoutTemplate: WorkoutTemplate | null;
+
+	@Exclude()
+	@ManyToOne(
+		() => PlannedWorkout,
+		(plannedWorkout) => plannedWorkout.sets,
+		{ nullable: true },
+	)
+	plannedWorkout: PlannedWorkout | null;
 
 	@Column()
 	name: string;
