@@ -20,14 +20,14 @@ export default class PlanningService {
 				throw "Invalid template";
 			}
 
-			const plannedWorkouts = newWorkoutPlanningDTO.dates.map((date) => {
-				const plannedWorkout = new PlannedWorkout();
-				plannedWorkout.date = date;
-				plannedWorkout.template = template;
-				plannedWorkout.name = template.name;
-				plannedWorkout.tags = template.tags;
-				plannedWorkout.owner = template.owner;
-				return plannedWorkout;
+			const plannedWorkouts = newWorkoutPlanningDTO.plannedWorkouts.map((el) => {
+				const newPlannedWorkout = new PlannedWorkout();
+				newPlannedWorkout.date = el.date;
+				newPlannedWorkout.template = template;
+				newPlannedWorkout.name = template.name;
+				newPlannedWorkout.tags = template.tags;
+				newPlannedWorkout.owner = template.owner;
+				return newPlannedWorkout;
 			});
 
 			const savedPlannedWorkouts = await Promise.all(
@@ -36,10 +36,13 @@ export default class PlanningService {
 
 			await Promise.all(
 				savedPlannedWorkouts.map(async (plannedWorkout) => {
+					const plannedWorkoutDTO = newWorkoutPlanningDTO.plannedWorkouts.find(
+						(el) => el.date === plannedWorkout.date,
+					);
 					//TODO: work on differences
 					plannedWorkout.sets = await Promise.all(
 						template.sets.map((set) => {
-							const overwrittenSet = newWorkoutPlanningDTO.differences.find(
+							const overwrittenSet = plannedWorkoutDTO?.differences.find(
 								(difference) => difference.sort === set.sort,
 							);
 							return this.getExerciseSetCopy(overwrittenSet || set, plannedWorkout);

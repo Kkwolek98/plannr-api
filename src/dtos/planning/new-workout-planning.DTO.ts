@@ -2,8 +2,10 @@ import ExerciseSet from "../../entities/set/exercise-set.entity";
 
 export type NewWorkoutPlanningDTO = {
 	template: string;
-	differences: ExerciseSet[];
-	dates: Date[];
+	plannedWorkouts: {
+		differences: ExerciseSet[];
+		date: Date;
+	}[];
 };
 
 /**
@@ -14,21 +16,25 @@ export type NewWorkoutPlanningDTO = {
  *       type: object
  *       required:
  *         - template
- *         - differences
- *         - dates
+ *         - plannedWorkouts
  *       properties:
  *         template:
  *           type: string
  *           format: uuid
- *         differences:
+ *           description: The unique identifier of the workout template.
+ *         plannedWorkouts:
  *           type: array
+ *           description: Array of planned workouts with differences and dates.
  *           items:
- *             $ref: '#/components/schemas/ExerciseSet'
- *           description: List of differences between the template and the new workout.
- *         dates:
- *           type: array
- *           items:
- *             type: string
- *             format: date-time
- *           description: Array of dates for which the workout plan is applicable.
+ *             type: object
+ *             properties:
+ *               differences:
+ *                 type: array
+ *                 items:
+ *                   $ref: '#/components/schemas/ExerciseSet'
+ *                 description: List of differences between the template and the planned workout.
+ *               date:
+ *                 type: string
+ *                 format: date-time
+ *                 description: The date for which the workout plan is applicable.
  */
