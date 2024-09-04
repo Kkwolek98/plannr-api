@@ -38,7 +38,12 @@ export default class PlanningService {
 				savedPlannedWorkouts.map(async (plannedWorkout) => {
 					//TODO: work on differences
 					plannedWorkout.sets = await Promise.all(
-						template.sets.map((set) => this.getExerciseSetCopy(set, plannedWorkout)),
+						template.sets.map((set) => {
+							const overwrittenSet = newWorkoutPlanningDTO.differences.find(
+								(difference) => difference.sort === set.sort,
+							);
+							return this.getExerciseSetCopy(overwrittenSet || set, plannedWorkout);
+						}),
 					);
 				}),
 			);
